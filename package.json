@@ -10,11 +10,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@shelf/jest-mongodb": "^2.0.1",
+    "@types/bcrypt": "^5.0.0",
     "@types/jest": "^26.0.24",
+    "@types/mongodb": "^3.6.11",
     "@types/node": "^16.4.10",
+    "@types/validator": "^13.6.3",
     "jest": "^27.0.6",
     "ts-jest": "^27.0.4",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "mongodb": "^3.6.11",
+    "validator": "^13.6.0"
   }
 }
