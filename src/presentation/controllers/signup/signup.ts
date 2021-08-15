@@ -1,11 +1,11 @@
-import { HttpResponse, HttpRequest } from '../protocols/http';
-import { MissingParamError } from '../errors/missing-param-error';
-import { badRequest, ok, serverError } from '../helpers/http-helper';
-import { Controller } from '../protocols/controller';
-import { EmailValidator } from '../protocols/email-validator';
-import { InvalidParamError } from '../errors/invalid-param-error';
-import { ServerError } from '../errors/server-error';
-import { AddAccount } from '../../domain/usecases/add-account';
+import { HttpResponse, HttpRequest } from '../../protocols/http';
+import { MissingParamError } from '../../errors/missing-param-error';
+import { badRequest, ok, serverError } from '../../helpers/http-helper';
+import { Controller } from '../../protocols/controller';
+import { EmailValidator } from '../../protocols/email-validator';
+import { InvalidParamError } from '../../errors/invalid-param-error';
+import { ServerError } from '../../errors/server-error';
+import { AddAccount } from '../../../domain/usecases/add-account';
 
 export class SignUpController implements Controller {
 
