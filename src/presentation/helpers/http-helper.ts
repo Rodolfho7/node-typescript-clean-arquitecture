@@ -16,7 +16,6 @@ export const unauthorized = (): HttpResponse => {
   }
 }
 
-
 export const serverError = (error: Error): HttpResponse => {
   return {
     statusCode: 500,

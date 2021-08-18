@@ -6,21 +6,21 @@ import { EmailValidator } from '../../protocols/email-validator';
 import { InvalidParamError } from '../../errors/invalid-param-error';
 import { ServerError } from '../../errors/server-error';
 import { AddAccount } from '../../../domain/usecases/add-account';
+import { Validation } from '../../helpers/validators/validation';
 
 export class SignUpController implements Controller {
 
   constructor(
     private readonly emailValidator: EmailValidator,
-    private readonly addAccount: AddAccount
+    private readonly addAccount: AddAccount,
+    private readonly validation: Validation
   ) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const requiredFields = ['name', 'email', 'password', 'passwordConfirmation'];
-      for (const field of requiredFields) {
-        if (!httpRequest.body[field]) {
-          return badRequest(new MissingParamError(field));
-        }
+      const error = this.validation.validate(httpRequest.body);
+      if (error) {
+        return badRequest(error);
       }
       const { name, email, password, passwordConfirmation } = httpRequest.body;
       if (password !== passwordConfirmation) {
