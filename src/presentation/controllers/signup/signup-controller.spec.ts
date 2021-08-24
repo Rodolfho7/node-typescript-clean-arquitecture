@@ -5,8 +5,8 @@ import { EmailValidator } from '../../protocols/email-validator';
 import { ServerError } from '../../errors/server-error';
 import { AddAccount, AddAccountModel } from '../../../domain/usecases/add-account';
 import { AccountModel } from '../../../domain/models/account';
-import { Validation } from '../../helpers/validators/validation';
-import { badRequest, ok } from '../../helpers/http-helper';
+import { Validation } from '../../protocols/validation';
+import { badRequest, ok } from '../../helpers/http/http-helper';
 
 type SutTypes = {
   sut: SignUpController,

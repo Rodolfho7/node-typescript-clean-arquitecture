@@ -1,6 +1,6 @@
 import { MissingParamError } from "../../errors/missing-param-error";
 import { RequiredFieldValidation } from "./required-field-validation";
-import { Validation } from "./validation";
+import { Validation } from "../../protocols/validation";
 
 type SutTypes = {
   sut: Validation
