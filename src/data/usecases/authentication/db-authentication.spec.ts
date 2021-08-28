@@ -2,8 +2,8 @@ import { AccountModel } from "../../../domain/models/account";
 import { Authentication } from "../../../domain/usecases/authentication";
 import { HashCompare } from "../../protocols/criptography/hash-compare";
 import { Encrypter } from "../../protocols/criptography/encrypter";
-import { LoadAccountByEmailRepository } from "../../protocols/db/load-account-by-email-repository";
-import { UpdateAccessTokenRepository } from "../../protocols/db/update-access-token-repository";
+import { LoadAccountByEmailRepository } from "../../protocols/db/account/load-account-by-email-repository";
+import { UpdateAccessTokenRepository } from "../../protocols/db/account/update-access-token-repository";
 import { DbAuthentication } from "./db-authentication";
 
 const makeFakeAuthentication = () => {
