@@ -1,6 +1,6 @@
-import { InvalidParamError } from "../../errors/invalid-param-error";
-import { MissingParamError } from "../../errors/missing-param-error";
-import { Validation } from "../../protocols/validation";
+import { InvalidParamError } from "../../presentation/errors/invalid-param-error";
+import { MissingParamError } from "../../presentation/errors/missing-param-error";
+import { Validation } from "../../presentation/protocols/validation";
 import { ValidationComposite } from "./validation-composite";
 
 const makeValidationStub = (): Validation => {
