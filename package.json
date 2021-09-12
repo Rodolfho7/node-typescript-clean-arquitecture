@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "sucrase-node src/main/server.ts",
+    "start": "node dist/main/server.js",
+    "build": "tsc",
     "test": "jest --silent --noStackTrace --runInBand",
     "test:verbose": "jest",
     "test:unit": "npm test -- --watchAll -c jest-unit-config.js",
-    "test:integration": "npm test -- --watchAll -c jest-integration-config.js",
-    "start": "sucrase-node src/main/server.ts"
+    "test:integration": "npm test -- --watchAll -c jest-integration-config.js"
   },
   "keywords": [],
   "author": "",
@@ -33,7 +35,6 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
-    "fast-glob": "^3.2.7",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.11",
     "validator": "^13.6.0"
