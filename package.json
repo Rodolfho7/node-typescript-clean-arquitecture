@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "up": "npm run build && docker-compose up -d",
+    "up": "npm run build && docker-compose up",
     "down": "docker-compose down",
     "start": "node dist/main/server.js",
-    "debug": "node --inspect=0.0.0.0:9222 --nolazy dist/main/server.js",
+    "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
     "build": "tsc",
+    "build:watch": "tsc -w",
     "test": "jest --silent --noStackTrace --runInBand",
     "test:verbose": "jest",
     "test:unit": "npm test -- --watchAll -c jest-unit-config.js",
@@ -38,6 +39,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.11",
+    "nodemon": "^2.0.13",
     "validator": "^13.6.0"
   }
 }
