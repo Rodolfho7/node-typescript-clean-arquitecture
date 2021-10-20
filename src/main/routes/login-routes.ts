@@ -1,6 +1,6 @@
-import { makeSignupController } from "../factories/controllers/signup/signup-factory";
-import { makeLoginController } from "../factories/controllers/login/login-factory";
-import { adaptRoute } from '../adapters/express/express-route-adapter';
+import { makeSignupController } from "../factories/controllers/login/signup/signup-factory";
+import { makeLoginController } from "../factories/controllers/login/login/login-factory";
+import { adaptRoute } from '../adapters/express-route-adapter';
 import { Router } from "express";
 
 export default (router: Router): void => {

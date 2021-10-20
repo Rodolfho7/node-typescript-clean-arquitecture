@@ -10,7 +10,7 @@
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
     "build": "tsc",
     "build:watch": "tsc -w",
-    "test": "jest --silent --noStackTrace --runInBand",
+    "test": "jest --noStackTrace --runInBand",
     "test:verbose": "jest",
     "test:unit": "npm test -- --watchAll -c jest-unit-config.js",
     "test:integration": "npm test -- --watchAll -c jest-integration-config.js"
