@@ -1,11 +1,18 @@
 import { AddSurvey, AddSurveyModel } from "../../../domain/usecases/add-survey";
 import { AddSurveyRepository } from "../../protocols/db/survey/add-survey-repository";
 import { DbAddSurvey } from "./db-add-survey";
+import MockDate from 'mockdate';
 
 const makeFakeSurveyData = (): AddSurveyModel => {
   return {
     question: 'any_question',
-    answers: [{ answer: 'any_answer', image: 'any_image'}]
+    answers: [
+      {
+        answer: 'any_answer',
+        image: 'any_image'
+      }
+    ],
+    date: new Date()
   }
 }
 
@@ -30,6 +37,13 @@ const makeSut = (): SutTypes => {
 }
 
 describe('DbAddSurvey Usecase', () => {
+  beforeAll(() => {
+    MockDate.set(new Date());
+  });
+  afterAll(() => {
+    MockDate.reset();
+  });
+
   test('Should call AddSurveyRepository with correct values', async () => {
     const { sut, AddSurveyRepositoryStub } = makeSut();
 
@@ -38,7 +52,8 @@ describe('DbAddSurvey Usecase', () => {
 
     expect(addSpy).toHaveBeenCalledWith({
       question: 'any_question',
-      answers: [{ answer: 'any_answer', image: 'any_image'}]
+      answers: [{ answer: 'any_answer', image: 'any_image'}],
+      date: new Date()
     });
   });
 });
