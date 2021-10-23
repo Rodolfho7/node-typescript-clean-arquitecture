@@ -43,7 +43,7 @@ describe('Account Mongo Repository', () => {
   });
 
   describe('loadAll()', () => {
-    test('Should load all surveys on success', async () => {
+    test('Should load all surveys (2) on success', async () => {
       await surveysCollection.insertMany([
         {
           question: 'any_question',
@@ -69,13 +69,33 @@ describe('Account Mongo Repository', () => {
       const sut = makeSut();
       const surveys = await sut.loadAll();
       expect(surveys.length).toBe(2);
+      expect(surveys[0].id).toBeTruthy();
     });
 
-    
-    test('Should load all surveys on success', async () => {
+    test('Should load all surveys (0) on success', async () => {
       const sut = makeSut();
       const surveys = await sut.loadAll();
       expect(surveys.length).toBe(0);
+    });
+  });
+
+  describe('loadById()', () => {
+    test('Should load survey by id on success', async () => {
+      const res = await surveysCollection.insertOne({
+        question: 'any_question',
+        answers: [
+          {
+            answer: 'any_answer',
+            image: 'any_image'
+          }
+        ],
+        date: new Date()
+      });
+      const id = res.ops[0]._id;
+      const sut = makeSut();
+      const survey = await sut.loadById(id);
+      expect(survey).toBeTruthy();
+      expect(survey.id).toBeTruthy();
     });
   });
 });
