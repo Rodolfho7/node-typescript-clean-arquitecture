@@ -44,7 +44,7 @@ describe('Account Mongo Repository', () => {
 
   describe('loadAll()', () => {
     test('Should load all surveys on success', async () => {
-      surveysCollection.insertMany([
+      await surveysCollection.insertMany([
         {
           question: 'any_question',
           answers: [
