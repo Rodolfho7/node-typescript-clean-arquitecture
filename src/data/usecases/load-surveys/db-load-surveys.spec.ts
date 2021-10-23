@@ -7,8 +7,8 @@ import MockDate from 'mockdate';
 const makeFakeSurveys = (): SurveyModel[] => {
   return [
     {
-    id: 'any_id',
-    question: 'any_question',
+      id: 'any_id',
+      question: 'any_question',
       answers: [
         {
           image: 'any_image',
