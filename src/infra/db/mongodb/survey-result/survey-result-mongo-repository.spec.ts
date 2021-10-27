@@ -1,6 +1,6 @@
 import { SurveyResultMongoRepository } from './survey-result-mongo-repository';
 import { MongoHelper } from '../helpers/mongo-helper';
-import { SaveSurveyResultModel } from '../../../../domain/usecases/save-survey-result';
+import { SaveSurveyResultModel } from '../../../../domain/usecases/survey-result/save-survey-result';
 import { AccountModel } from '../../../../domain/models/account';
 import { SurveyModel } from '../../../../domain/models/survey';
 import { Collection } from 'mongodb';

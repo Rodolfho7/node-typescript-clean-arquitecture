@@ -1,11 +1,11 @@
 import { SignUpController } from './signup-controller';
 import { MissingParamError } from '../../../errors/missing-param-error';
 import { ServerError } from '../../../errors/server-error';
-import { AddAccount, AddAccountModel } from '../../../../domain/usecases/add-account';
+import { AddAccount, AddAccountModel } from '../../../../domain/usecases/account/add-account';
 import { AccountModel } from '../../../../domain/models/account';
 import { Validation } from '../../../protocols/validation';
 import { badRequest, forbidden, ok } from '../../../helpers/http/http-helper';
-import { Authentication, AuthenticationModel } from '../../../../domain/usecases/authentication';
+import { Authentication, AuthenticationModel } from '../../../../domain/usecases/account/authentication';
 import { HttpRequest } from '../../../protocols/http';
 import { EmailInUseError } from '../../../errors/email-in-use-error';
 

@@ -1,8 +1,8 @@
-import { AccountModel } from '../../../domain/models/account';
-import { LoadAccountByToken } from '../../../domain/usecases/load-account-by-token';
-import { Decrypter } from '../../protocols/criptography/decrypter';
+import { AccountModel } from '../../../../domain/models/account';
+import { LoadAccountByToken } from '../../../../domain/usecases/account/load-account-by-token';
+import { Decrypter } from '../../../protocols/criptography/decrypter';
 import { DbLoadAccountByToken } from './db-load-account-by-token';
-import { LoadAccountByTokenRepository } from '../../protocols/db/account/load-account-by-token-repository'; 
+import { LoadAccountByTokenRepository } from '../../../protocols/db/account/load-account-by-token-repository'; 
 
 const makeLoadAccountByTokenRepository = (): LoadAccountByTokenRepository => {
   class LoadAccountByTokenRepositoryStub implements LoadAccountByTokenRepository {

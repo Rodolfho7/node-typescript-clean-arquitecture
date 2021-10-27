@@ -1,5 +1,5 @@
 import { SurveyModel } from '../../../../domain/models/survey';
-import { LoadSurveys } from '../../../../domain/usecases/load-surveys';
+import { LoadSurveys } from '../../../../domain/usecases/survey/load-surveys';
 import { Controller } from '../../../protocols/controller';
 import { LoadSurveysController } from './load-surveys-controller';
 import { noContent, ok, serverError } from '../../../helpers/http/http-helper';
