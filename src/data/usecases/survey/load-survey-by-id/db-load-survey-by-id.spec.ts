@@ -1,6 +1,7 @@
 import { SurveyModel } from '../../../../domain/models/survey';
 import { LoadSurveyByIdRepository } from '../../../protocols/db/survey/load-survey-by-id-repository';
 import { DbLoadSurveyById } from './db-load-survey-by-id';
+import MockDate from 'mockdate';
 
 const makeFakeSurvey = (): SurveyModel => {
   return {
@@ -38,6 +39,14 @@ const makeSut = (): SutTypes => {
 }
 
 describe('LoadSurveyById', () => {
+  beforeAll(() => {
+    MockDate.set(new Date());
+  });
+
+  afterAll(() => {
+    MockDate.reset();
+  });
+
   test('Should call LoadSurveyByIdRepository', async () => {
     const { sut, loadSurveyByIdRepositoryStub } = makeSut();
     const loadByIdSpy = jest.spyOn(loadSurveyByIdRepositoryStub, 'loadById');

@@ -5,5 +5,7 @@ export interface HttpResponse {
 
 export interface HttpRequest {
   body?: any,
-  headers?: any
+  headers?: any,
+  params?: any,
+  accountId?: any
 }
