@@ -1,4 +1,4 @@
-import { AddSurvey, AddSurveyModel } from "../../../../domain/usecases/survey/add-survey";
+import { AddSurvey, AddSurveyParams } from "../../../../domain/usecases/survey/add-survey";
 import { badRequest, noContent, serverError } from "../../../helpers/http/http-helper";
 import { Controller } from "../../../protocols/controller";
 import { HttpRequest } from "../../../protocols/http";
@@ -32,7 +32,7 @@ const makeValidationStub = (): Validation => {
 
 const makeAddSurveyStub = (): AddSurvey => {
   class AddSurveyStub implements AddSurvey {
-    add(data: AddSurveyModel): Promise<void> {
+    add(data: AddSurveyParams): Promise<void> {
       return Promise.resolve(null);
     }
   }

@@ -1,5 +1,5 @@
 import { AccountModel } from "../../../../domain/models/account";
-import { AddAccountModel } from "../../../../domain/usecases/account/add-account";
+import { AddAccountParams } from "../../../../domain/usecases/account/add-account";
 import { AddAccountRepository } from "../../../protocols/db/account/add-account-repository";
 import { Hasher } from "../../../protocols/criptography/hasher";
 import { DbAddAccount } from "./db-add-account";
@@ -23,7 +23,7 @@ const makeHasher = (): Hasher => {
 
 const makeAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
-    async add(account: AddAccountModel): Promise<AccountModel> {
+    async add(account: AddAccountParams): Promise<AccountModel> {
       return Promise.resolve({
         id: 'valid_id',
         name: 'valid_name',

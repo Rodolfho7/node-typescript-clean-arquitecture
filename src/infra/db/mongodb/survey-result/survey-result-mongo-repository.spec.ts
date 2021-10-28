@@ -1,6 +1,6 @@
 import { SurveyResultMongoRepository } from './survey-result-mongo-repository';
 import { MongoHelper } from '../helpers/mongo-helper';
-import { SaveSurveyResultModel } from '../../../../domain/usecases/survey-result/save-survey-result';
+import { SaveSurveyResultParams } from '../../../../domain/usecases/survey-result/save-survey-result';
 import { AccountModel } from '../../../../domain/models/account';
 import { SurveyModel } from '../../../../domain/models/survey';
 import { Collection } from 'mongodb';
@@ -70,7 +70,7 @@ describe('save()', () => {
     const { sut } = makeSut();
     const survey = await makeSurvey();
     const account = await makeAccount();
-    const saveSurveyResultData: SaveSurveyResultModel = {
+    const saveSurveyResultData: SaveSurveyResultParams = {
       accountId: account.id,
       surveyId: survey.id,
       answer: survey.answers[0].answer,
@@ -91,7 +91,7 @@ describe('save()', () => {
       answer: survey.answers[0].answer,
       date: new Date()
     });
-    const saveSurveyResultData: SaveSurveyResultModel = {
+    const saveSurveyResultData: SaveSurveyResultParams = {
       accountId: account.id,
       surveyId: survey.id,
       answer: survey.answers[1].answer,

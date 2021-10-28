@@ -1,17 +1,17 @@
 import { SignUpController } from './signup-controller';
 import { MissingParamError } from '../../../errors/missing-param-error';
 import { ServerError } from '../../../errors/server-error';
-import { AddAccount, AddAccountModel } from '../../../../domain/usecases/account/add-account';
+import { AddAccount, AddAccountParams } from '../../../../domain/usecases/account/add-account';
 import { AccountModel } from '../../../../domain/models/account';
 import { Validation } from '../../../protocols/validation';
 import { badRequest, forbidden, ok } from '../../../helpers/http/http-helper';
-import { Authentication, AuthenticationModel } from '../../../../domain/usecases/account/authentication';
+import { Authentication, AuthenticationParams } from '../../../../domain/usecases/account/authentication';
 import { HttpRequest } from '../../../protocols/http';
 import { EmailInUseError } from '../../../errors/email-in-use-error';
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationStub implements Authentication {
-    async auth(authentication: AuthenticationModel): Promise<string> {
+    async auth(authentication: AuthenticationParams): Promise<string> {
       return Promise.resolve('any_token');
     }
   }
@@ -36,7 +36,7 @@ const makeValidation = (): Validation => {
 
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
-    async add(account: AddAccountModel): Promise<AccountModel> {
+    async add(account: AddAccountParams): Promise<AccountModel> {
       const fakeAccount = {
         id: 'valid_id',
         name: 'valid_name',
