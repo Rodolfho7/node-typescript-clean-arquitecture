@@ -8,6 +8,7 @@ import { badRequest, forbidden, ok } from '../../../helpers/http/http-helper';
 import { Authentication, AuthenticationParams } from '../../../../domain/usecases/account/authentication';
 import { HttpRequest } from '../../../protocols/http';
 import { EmailInUseError } from '../../../errors/email-in-use-error';
+import { mockAccountModel, mockAddAccountParams } from '../../../../domain/test/mock-account';
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationStub implements Authentication {
@@ -37,12 +38,7 @@ const makeValidation = (): Validation => {
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
     async add(account: AddAccountParams): Promise<AccountModel> {
-      const fakeAccount = {
-        id: 'valid_id',
-        name: 'valid_name',
-        email: 'valid_email@mail.com',
-        password: 'valid_password'
-      }
+      const fakeAccount = mockAccountModel();
       return Promise.resolve(fakeAccount);
     }
   }
@@ -54,12 +50,10 @@ const makeSut = (): SutTypes => {
   const validationStub = makeValidation();
   const authenticationStub = makeAuthentication();
   const sut = new SignUpController(addAccountStub, validationStub, authenticationStub);
-
   return { sut, addAccountStub, validationStub, authenticationStub };
 }
 
 describe('SignUpController', () => {
-
   test('Should return 500 if addAccount throws', async () => {
     const { sut, addAccountStub } = makeSut();
     jest.spyOn(addAccountStub, 'add').mockImplementationOnce(async () => Promise.reject(new Error()));
@@ -84,19 +78,15 @@ describe('SignUpController', () => {
 
     const httpRequest = {
       body: {
-        email: 'any-mail@mail.com',
-        name: 'any-name',
-        password: 'any-password',
-        passwordConfirmation: 'any-password'
+        email: 'any_mail@mail.com',
+        name: 'any_name',
+        password: 'any_password',
+        passwordConfirmation: 'any_password'
       }
     }
 
     await sut.handle(httpRequest);
-    expect(addSpy).toHaveBeenCalledWith({
-      email: 'any-mail@mail.com',
-      name: 'any-name',
-      password: 'any-password',
-    });
+    expect(addSpy).toHaveBeenCalledWith(mockAddAccountParams());
   });
 
   test('Should return 403 if addAccount returns null', async () => {

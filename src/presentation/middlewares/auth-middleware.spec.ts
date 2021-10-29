@@ -5,16 +5,12 @@ import { AuthMiddleware } from './auth-middleware';
 import { Middleware } from "../protocols/middleware";
 import { LoadAccountByToken } from '../../domain/usecases/account/load-account-by-token';
 import { AccountModel } from "../../domain/models/account";
+import { mockAccountModel } from '../../domain/test/mock-account';
 
 const makeLoadAccountByToken = (): LoadAccountByToken => {
   class LoadAccountByTokenStub implements LoadAccountByToken {
     async load(accessToken: string): Promise<AccountModel> {
-      return Promise.resolve({
-        id: 'valid_id',
-        name: 'valid_name',
-        email: 'valid_mail@mail.com',
-        password: 'hashed_password'
-      });
+      return Promise.resolve(mockAccountModel());
     }
   }
   return new LoadAccountByTokenStub();
@@ -69,7 +65,7 @@ describe('Auth Middleware', () => {
       }
     };
     const httpResponse = await sut.handle(httpRequest);
-    expect(httpResponse).toEqual(ok({ accountId: 'valid_id' }));
+    expect(httpResponse).toEqual(ok({ accountId: 'any_id' }));
   });
 
   test('Should return 500 if LoadAccountByToken throws', async () => {
