@@ -3,7 +3,7 @@ import { MongoHelper } from '../helpers/mongo-helper';
 import { SaveSurveyResultParams } from '../../../../domain/usecases/survey-result/save-survey-result';
 import { AccountModel } from '../../../../domain/models/account';
 import { SurveyModel } from '../../../../domain/models/survey';
-import { Collection } from 'mongodb';
+import { Collection, ObjectId } from 'mongodb';
 import MockDate from 'mockdate';
 
 let surveyCollection: Collection;
@@ -78,16 +78,21 @@ describe('save()', () => {
     };
     const surveyResult = await sut.save(saveSurveyResultData);
     expect(surveyResult).toBeTruthy();
-    expect(surveyResult.id).toBeTruthy();
+    expect(surveyResult.surveyId).toEqual(survey.id);
+    expect(surveyResult.answers[0].answer).toBe(survey.answers[0].answer);
+    expect(surveyResult.answers[0].count).toBe(1);
+    expect(surveyResult.answers[0].percent).toBe(100);
+    expect(surveyResult.answers[1].count).toBe(0);
+    expect(surveyResult.answers[1].percent).toBe(0);
   });
 
   test('Should add a survey result if its not new', async () => {
     const { sut } = makeSut();
     const survey = await makeSurvey();
     const account = await makeAccount();
-    const res = await surveyResultCollection.insertOne({
-      accountId: account.id,
-      surveyId: survey.id,
+    await surveyResultCollection.insertOne({
+      accountId: new ObjectId(account.id),
+      surveyId: new ObjectId(survey.id),
       answer: survey.answers[0].answer,
       date: new Date()
     });
@@ -99,7 +104,11 @@ describe('save()', () => {
     };
     const surveyResult = await sut.save(saveSurveyResultData);
     expect(surveyResult).toBeTruthy();
-    expect(surveyResult.id).toEqual(res.ops[0]._id);
-    expect(surveyResult.answer).toBe(survey.answers[1].answer);
+    expect(surveyResult.surveyId).toEqual(survey.id);
+    expect(surveyResult.answers[0].answer).toBe(survey.answers[1].answer);
+    expect(surveyResult.answers[0].count).toBe(1);
+    expect(surveyResult.answers[0].percent).toBe(100);
+    expect(surveyResult.answers[1].count).toBe(0);
+    expect(surveyResult.answers[1].percent).toBe(0);
   });
 });

@@ -6,11 +6,22 @@ import MockDate from 'mockdate';
 
 const makeFakeSurveyResult = (): SurveyResultModel => {
   return {
-    id: 'any_id',
-    accountId: 'any_account_id',
     surveyId: 'any_survey_id',
-    date: new Date(),
-    answer: 'any_answer'
+    question: 'any_question',
+    answers: [
+      {
+        answer: 'any_answer',
+        count: 1,
+        percent: 50
+      },
+      {
+        answer: 'other_answer',
+        count: 1,
+        percent: 50,
+        image: 'any_image'
+      }
+    ],
+    date: new Date()
   }
 }
 
